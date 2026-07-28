@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Горный эксперт — Всё о горнолыжных курортах | Обзоры, цены, прогнозы</title>
+  <meta name="description" content="Горный эксперт — блог о горнолыжных курортах России и мира. Обзоры курортов, сравнение цен на ски-пассы, прогнозы погоды и советы экспертов для лыжников и сноубордистов.">
+  <meta name="keywords" content="горнолыжные курорты, горный эксперт, ски-пасс, красная поляна, шерегеш, эльбрус, цены, обзоры">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gornyexpert.ru/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Горный эксперт — Всё о горнолыжных курортах">
+  <meta property="og:description" content="Обзоры курортов, сравнение цен на ски-пассы, прогнозы погоды и советы экспертов для лыжников и сноубордистов.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://gornyexpert.ru/">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Горный эксперт — Всё о горнолыжных курортах">
+  <meta name="twitter:description" content="Обзоры курортов, сравнение цен на ски-пассы, прогнозы погоды и советы экспертов.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&h=630&fit=crop">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Горный эксперт",
+    "url": "https://gornyexpert.ru/",
+    "description": "Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.",
+    "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200",
+    "author": {
+      "@type": "Organization",
+      "name": "Горный эксперт"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⛰</div>
+        <span data-i18n="hero.title">Горный эксперт</span>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="index.html" class="active" data-i18n="nav.home">Главная</a>
+        <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+        <a href="weather.html" data-i18n="nav.weather">Погода</a>
+        <a href="calendar.html" data-i18n="nav.calendar">События</a>
+        <a href="tips.html" data-i18n="nav.tips">Советы</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+
+      <div class="header-tools">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+      <div class="container">
+        <div class="hero-content animate-fade-in" id="heroContent">
+          <h1>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </h1>
+          <p data-i18n="hero.subtitle">Всё о горнолыжных курортах России и мира: обзоры, цены, прогнозы и советы экспертов</p>
+          <div class="hero-buttons">
+            <a href="resorts.html" class="btn btn-primary" data-i18n="hero.cta_resorts">Смотреть курорты</a>
+            <a href="#articles" class="btn btn-outline" data-i18n="hero.cta">Читать статьи</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Article Section -->
+    <section class="section" id="articles">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="home.featured_title">Материалы</h2>
+        </div>
+
+        <div class="article-grid" id="articleGrid">
+          <!-- Articles loaded dynamically from articles.json -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <button class="pagination-btn" id="prevPage" disabled data-i18n="home.prev_page">← Назад</button>
+          <span class="pagination-info" id="pageInfo" data-i18n="home.page">Страница 1 из 1</span>
+          <button class="pagination-btn" id="nextPage" data-i18n="home.next_page">Вперёд →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section class="section section-alt" id="trends">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="trends.title">Тренды сезона 2025-2026</h2>
+        </div>
+        <div class="trends-grid stagger-container animate-on-scroll">
+          <div class="trend-item">
+            <div class="trend-number">01</div>
+            <p class="trend-text" data-i18n="trends.item1">Российские туристы переориентируются с Красной Поляны на Шерегеш и Архыз</p>
+          </div>
+          <div class="trend-item">
+            <div class="trend-number">02</div>
+            <p class="trend-text" data-i18n="trends.item2">Шерегеш — +50% бронирований год к году</p>
+          </div>
+          <div class="trend-item">
+            <div class="trend-number">03</div>
+            <p class="trend-text" data-i18n="trends.item3">Рост популярности событийного туризма на курортах</p>
+          </div>
+          <div class="trend-item">
+            <div class="trend-number">04</div>
+            <p class="trend-text" data-i18n="trends.item4">Тренд на комфорт: 4-5* отели вместо экономии</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⛰</div>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </a>
+          <p data-i18n="footer.about">Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.</p>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer.nav_title">Навигация</h4>
+          <nav class="footer-nav">
+            <a href="index.html" data-i18n="nav.home">Главная</a>
+            <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+            <a href="weather.html" data-i18n="nav.weather">Погода</a>
+            <a href="calendar.html" data-i18n="nav.calendar">События</a>
+            <a href="tips.html" data-i18n="nav.tips">Советы</a>
+            <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer.contacts_title">Контакты</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <span data-i18n="contacts.info_email">info@gornyexpert.ru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📱</span>
+            <span data-i18n="contacts.telegram">Telegram</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span data-i18n="contacts.vk">ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Горный эксперт. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

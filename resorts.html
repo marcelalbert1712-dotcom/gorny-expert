@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Топ горнолыжных курортов 2025-2026 — Сравнение цен и трасс | Горный эксперт</title>
+  <meta name="description" content="Сравнение лучших горнолыжных курортов России и мира. Цены на ски-пассы, высота трасс, рейтинг, сезон катания, плюсы и минусы каждого курорта.">
+  <meta name="keywords" content="горнолыжные курорты, топ курортов, красная поляна, шерегеш, эльбрус, церматт, куршевель, сравнение">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gornyexpert.ru/resorts.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Топ горнолыжных курортов 2025-2026 — Сравнение цен и трасс">
+  <meta property="og:description" content="Сравнение лучших горнолыжных курортов России и мира: цены, высота, рейтинг, сезон, плюсы и минусы.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1464040453996-44b2653b9b8e?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://gornyexpert.ru/resorts.html">
+  <meta property="og:locale" content="ru_RU">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Топ горнолыжных курортов 2025-2026">
+  <meta name="twitter:description" content="Сравнение лучших горнолыжных курортов России и мира.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1464040453996-44b2653b9b8e?w=1200&h=630&fit=crop">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Топ горнолыжных курортов",
+    "url": "https://gornyexpert.ru/resorts.html",
+    "description": "Сравнение лучших горнолыжных курортов России и мира."
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⛰</div>
+        <span data-i18n="hero.title">Горный эксперт</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav.home">Главная</a>
+        <a href="resorts.html" class="active" data-i18n="nav.resorts">Курорты</a>
+        <a href="weather.html" data-i18n="nav.weather">Погода</a>
+        <a href="calendar.html" data-i18n="nav.calendar">События</a>
+        <a href="tips.html" data-i18n="nav.tips">Советы</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+      <div class="header-tools">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1 data-i18n="resorts.title">Топ горнолыжных курортов</h1>
+        <p data-i18n="resorts.subtitle">Сравнение лучших курортов России и мира: цены, трассы, сезоны</p>
+      </div>
+    </section>
+
+    <!-- Russian Resorts -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="resorts.russian">Российские курорты</h2>
+        </div>
+        <div class="resort-grid stagger-container animate-on-scroll" id="russianResorts">
+          <!-- Loaded dynamically from data.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- World Resorts -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="resorts.world">Зарубежные курорты</h2>
+        </div>
+        <div class="resort-grid stagger-container animate-on-scroll" id="worldResorts">
+          <!-- Loaded dynamically from data.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Chart -->
+    <section class="section">
+      <div class="container">
+        <div class="chart-container animate-on-scroll">
+          <h3 data-i18n="weather.chart_title">Сравнение цен на ски-пассы (1 день)</h3>
+          <div class="chart-canvas-wrapper">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⛰</div>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </a>
+          <p data-i18n="footer.about">Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.nav_title">Навигация</h4>
+          <nav class="footer-nav">
+            <a href="index.html" data-i18n="nav.home">Главная</a>
+            <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+            <a href="weather.html" data-i18n="nav.weather">Погода</a>
+            <a href="calendar.html" data-i18n="nav.calendar">События</a>
+            <a href="tips.html" data-i18n="nav.tips">Советы</a>
+            <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+          </nav>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contacts_title">Контакты</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <span data-i18n="contacts.info_email">info@gornyexpert.ru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📱</span>
+            <span data-i18n="contacts.telegram">Telegram</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span data-i18n="contacts.vk">ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Горный эксперт. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

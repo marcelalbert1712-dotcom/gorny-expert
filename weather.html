@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Погода на горнолыжных курортах — Прогнозы и температура | Горный эксперт</title>
+  <meta name="description" content="Погода на горнолыжных курортах России: температура днём и ночью, количество снежных дней по месяцам. Прогноз на сезон 2026-2027 и летнее катание на ледниках.">
+  <meta name="keywords" content="погода горнолыжные курорты, прогноз, температура, снег, январь, февраль, март, летнее катание">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gornyexpert.ru/weather.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Погода на горнолыжных курортах — Прогнозы и температура">
+  <meta property="og:description" content="Сводка погоды по курортам: температура, снежные дни, прогноз на сезон. Сравнение цен на ски-пассы с графиками.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1504609773096-104ff2c73cb4?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://gornyexpert.ru/weather.html">
+  <meta property="og:locale" content="ru_RU">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Погода на горнолыжных курортах — Прогнозы">
+  <meta name="twitter:description" content="Сводка погоды по курортам, температура, снежные дни.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1504609773096-104ff2c73cb4?w=1200&h=630&fit=crop">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Погода на горнолыжных курортах",
+    "url": "https://gornyexpert.ru/weather.html",
+    "description": "Сводка погоды по горнолыжным курортам России."
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⛰</div>
+        <span data-i18n="hero.title">Горный эксперт</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav.home">Главная</a>
+        <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+        <a href="weather.html" class="active" data-i18n="nav.weather">Погода</a>
+        <a href="calendar.html" data-i18n="nav.calendar">События</a>
+        <a href="tips.html" data-i18n="nav.tips">Советы</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+      <div class="header-tools">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1 data-i18n="weather.title">Погода и прогнозы</h1>
+        <p data-i18n="weather.subtitle">Погода на горнолыжных курортах, прогнозы и сравнение цен</p>
+      </div>
+    </section>
+
+    <!-- Live Weather (OpenWeatherMap) -->
+    <section class="section section-alt" id="liveWeatherSection">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="weather.live_title">Погода сейчас и прогноз</h2>
+          <p data-i18n="weather.live_subtitle">Данные OpenWeatherMap, обновляются каждые 10 минут</p>
+        </div>
+        <div class="animate-on-scroll">
+          <div id="liveWeatherContainer">
+            <p class="loading-message" data-i18n="weather.loading">Загрузка погоды...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weather Table -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="weather.table_title">Сводка по курортам</h2>
+        </div>
+
+        <div class="weather-table-wrapper animate-on-scroll">
+          <table class="weather-table" id="weatherTable">
+            <thead>
+              <tr>
+                <th data-i18n="weather.resort">Курорт</th>
+                <th data-i18n="weather.jan">Январь</th>
+                <th data-i18n="weather.feb">Февраль</th>
+                <th data-i18n="weather.mar">Март</th>
+              </tr>
+            </thead>
+            <tbody id="weatherTableBody">
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summer Skiing -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 data-i18n="weather.summer_title">Летнее катание (июль-август)</h2>
+          <p data-i18n="weather.note">Летний период — катание только на ледниках</p>
+        </div>
+
+        <div class="weather-table-wrapper animate-on-scroll">
+          <table class="weather-table">
+            <thead>
+              <tr>
+                <th data-i18n="weather.resort">Курорт</th>
+                <th data-i18n="weather.status">Статус</th>
+                <th data-i18n="weather.temp">Температура</th>
+                <th data-i18n="weather.conditions">Условия</th>
+              </tr>
+            </thead>
+            <tbody id="summerTableBody">
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Chart -->
+    <section class="section">
+      <div class="container">
+        <div class="chart-container animate-on-scroll">
+          <h3 data-i18n="weather.chart_title">Сравнение цен на ски-пассы (1 день)</h3>
+          <div class="chart-canvas-wrapper">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⛰</div>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </a>
+          <p data-i18n="footer.about">Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.nav_title">Навигация</h4>
+          <nav class="footer-nav">
+            <a href="index.html" data-i18n="nav.home">Главная</a>
+            <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+            <a href="weather.html" data-i18n="nav.weather">Погода</a>
+            <a href="calendar.html" data-i18n="nav.calendar">События</a>
+            <a href="tips.html" data-i18n="nav.tips">Советы</a>
+            <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+          </nav>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contacts_title">Контакты</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <span data-i18n="contacts.info_email">info@gornyexpert.ru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📱</span>
+            <span data-i18n="contacts.telegram">Telegram</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span data-i18n="contacts.vk">ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Горный эксперт. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/weather-api.js"></script>
+</body>
+</html>

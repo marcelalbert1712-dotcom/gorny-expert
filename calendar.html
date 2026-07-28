@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Календарь событий на горнолыжных курортах 2026-2027 | Горный эксперт</title>
+  <meta name="description" content="Календарь фестивалей и мероприятий на горнолыжных курортах России: Grelka Fest, RED ARENA, открытие и закрытие сезона. Фильтр по месяцам.">
+  <meta name="keywords" content="календарь событий, горнолыжные фестивали, грелка фест, red arena, открытие сезона">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gornyexpert.ru/calendar.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Календарь событий на горнолыжных курортах 2026-2027">
+  <meta property="og:description" content="Фестивали, концерты и соревнования на горнолыжных курортах России. Фильтр по месяцам.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://gornyexpert.ru/calendar.html">
+  <meta property="og:locale" content="ru_RU">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Календарь событий на горнолыжных курортах">
+  <meta name="twitter:description" content="Фестивали, концерты и соревнования.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&h=630&fit=crop">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Календарь событий на горнолыжных курортах",
+    "url": "https://gornyexpert.ru/calendar.html",
+    "description": "Календарь фестивалей и мероприятий на горнолыжных курортах."
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⛰</div>
+        <span data-i18n="hero.title">Горный эксперт</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav.home">Главная</a>
+        <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+        <a href="weather.html" data-i18n="nav.weather">Погода</a>
+        <a href="calendar.html" class="active" data-i18n="nav.calendar">События</a>
+        <a href="tips.html" data-i18n="nav.tips">Советы</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+      <div class="header-tools">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1 data-i18n="calendar.title">Календарь событий</h1>
+        <p data-i18n="calendar.subtitle">Фестивали, концерты и соревнования на горнолыжных курортах сезона 2026-2027</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Filter buttons -->
+        <div class="calendar-filters animate-on-scroll" id="calendarFilters">
+          <button class="filter-btn active" data-filter="all" data-i18n="calendar.all_months">Все месяцы</button>
+        </div>
+
+        <!-- Events Table -->
+        <div class="events-table-wrapper animate-on-scroll">
+          <table class="events-table">
+            <thead>
+              <tr>
+                <th data-i18n="calendar.date">Дата</th>
+                <th data-i18n="calendar.event">Событие</th>
+                <th data-i18n="calendar.resort">Курорт</th>
+              </tr>
+            </thead>
+            <tbody id="eventsTableBody">
+              <!-- Loaded dynamically from data.json -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⛰</div>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </a>
+          <p data-i18n="footer.about">Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.nav_title">Навигация</h4>
+          <nav class="footer-nav">
+            <a href="index.html" data-i18n="nav.home">Главная</a>
+            <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+            <a href="weather.html" data-i18n="nav.weather">Погода</a>
+            <a href="calendar.html" data-i18n="nav.calendar">События</a>
+            <a href="tips.html" data-i18n="nav.tips">Советы</a>
+            <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+          </nav>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contacts_title">Контакты</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <span data-i18n="contacts.info_email">info@gornyexpert.ru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📱</span>
+            <span data-i18n="contacts.telegram">Telegram</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span data-i18n="contacts.vk">ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Горный эксперт. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
