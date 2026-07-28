@@ -765,6 +765,13 @@
         const email = emailInput.value.trim();
         const resort = document.getElementById('formResort')?.value || 'all';
 
+        console.log('[Telegram] Starting form submission...');
+        console.log('[Telegram] Token:', TELEGRAM_BOT_TOKEN ? TELEGRAM_BOT_TOKEN.substring(0, 10) + '...' : 'MISSING');
+        console.log('[Telegram] Chat ID:', TELEGRAM_CHAT_ID);
+        console.log('[Telegram] Name:', name);
+        console.log('[Telegram] Email:', email);
+        console.log('[Telegram] Resort:', resort);
+
         const resortNames = {
           ru: {
             all: 'Все курорты',
@@ -796,7 +803,15 @@
 🏔 <b>Курорт:</b> ${resortLabel}
 🕐 <b>Дата:</b> ${new Date().toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US')}`;
 
-        const resp = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        console.log('[Telegram] URL:', url.replace(TELEGRAM_BOT_TOKEN, 'BOT_TOKEN_HIDDEN'));
+        console.log('[Telegram] Request body:', JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: text.substring(0, 50) + '...',
+          parse_mode: 'HTML'
+        }));
+
+        const resp = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -806,18 +821,27 @@
           })
         });
 
+        console.log('[Telegram] Response status:', resp.status, resp.statusText);
+
         if (!resp.ok) {
           const errData = await resp.json();
+          console.error('[Telegram] Error response:', errData);
           throw new Error(errData.description || `HTTP ${resp.status}`);
         }
+
+        const respData = await resp.json();
+        console.log('[Telegram] Success! Response:', respData);
+        console.log('[Telegram] Message sent to chat:', respData.result?.chat?.id);
 
         form.style.display = 'none';
         successEl.classList.add('visible');
       } catch (err) {
-        console.error('Telegram send failed:', err);
+        console.error('[Telegram] Send failed:', err.message);
+        console.error('[Telegram] Full error:', err);
+        console.error('[Telegram] Error name:', err.name);
         alert(I18nManager.currentLang === 'ru'
-          ? 'Ошибка отправки. Попробуйте позже.'
-          : 'Send failed. Please try again later.');
+          ? 'Ошибка отправки. Подробности в консоли (F12).'
+          : 'Send failed. See console (F12) for details.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
