@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статья — Горный эксперт</title>
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Статья — Горный эксперт">
+  <meta property="og:description" content="Читайте статьи о горнолыжных курортах на Горном эксперте.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://gornyexpert.ru/article.html">
+  <meta property="og:locale" content="ru_RU">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Статья — Горный эксперт">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">⛰</div>
+        <span data-i18n="hero.title">Горный эксперт</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav.home">Главная</a>
+        <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+        <a href="weather.html" data-i18n="nav.weather">Погода</a>
+        <a href="calendar.html" data-i18n="nav.calendar">События</a>
+        <a href="tips.html" data-i18n="nav.tips">Советы</a>
+        <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+      <div class="header-tools">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-top: calc(var(--header-height) + var(--space-3xl)); padding-bottom: var(--space-3xl);">
+      <div id="articleContainer" data-loading="true">
+        <p style="text-align:center;color:var(--text-muted);padding:4rem 0;">Загрузка статьи...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">⛰</div>
+            <span data-i18n="hero.title">Горный эксперт</span>
+          </a>
+          <p data-i18n="footer.about">Блог о горнолыжных курортах России и мира. Обзоры, цены, прогнозы и советы экспертов.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.nav_title">Навигация</h4>
+          <nav class="footer-nav">
+            <a href="index.html" data-i18n="nav.home">Главная</a>
+            <a href="resorts.html" data-i18n="nav.resorts">Курорты</a>
+            <a href="weather.html" data-i18n="nav.weather">Погода</a>
+            <a href="calendar.html" data-i18n="nav.calendar">События</a>
+            <a href="tips.html" data-i18n="nav.tips">Советы</a>
+            <a href="contacts.html" data-i18n="nav.contacts">Контакты</a>
+          </nav>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contacts_title">Контакты</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📧</span>
+            <span data-i18n="contacts.info_email">info@gornyexpert.ru</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📱</span>
+            <span data-i18n="contacts.telegram">Telegram</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span data-i18n="contacts.vk">ВКонтакте</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer.copyright">© 2026 Горный эксперт. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    (function() {
+      'use strict';
+      const container = document.getElementById('articleContainer');
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+
+      if (!slug) {
+        container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:4rem 0;">Статья не указана. <a href="index.html" style="color:var(--color-accent);">Вернуться на главную</a></p>';
+        return;
+      }
+
+      fetch('content/articles.json')
+        .then(r => r.json())
+        .then(data => {
+          const article = data.articles.find(a => a.slug === slug);
+          if (!article) {
+            container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:4rem 0;">Статья не найдена. <a href="index.html" style="color:var(--color-accent);">Вернуться на главную</a></p>';
+            return;
+          }
+
+          const lang = document.documentElement.getAttribute('data-lang') || 'ru';
+          const isRu = lang === 'ru';
+          const title = isRu ? article.title : (article.title_en || article.title);
+          const author = isRu ? article.author : (article.author_en || article.author);
+          const readTime = isRu ? article.readTime : (article.readTime_en || article.readTime);
+          const content = isRu ? article.content : (article.content_en || article.content);
+          const date = new Date(article.date).toLocaleDateString(isRu ? 'ru-RU' : 'en-US', {
+            day: 'numeric', month: 'long', year: 'numeric'
+          });
+
+          const tags = (article.tags || []).map(t => `<span class="article-tag">${t}</span>`).join('');
+
+          document.title = `${title} — Горный эксперт`;
+          document.querySelector('meta[property="og:title"]').setAttribute('content', `${title} — Горный эксперт`);
+
+          container.innerHTML = `
+            <article class="article-full">
+              <a href="javascript:history.back()" class="article-back" style="display:inline-flex;align-items:center;gap:0.5rem;color:var(--color-accent);font-size:var(--fs-sm);margin-bottom:var(--space-xl);">&larr; Назад</a>
+              <h1 class="article-full-title">${title}</h1>
+              <div class="article-full-meta">
+                <span>👤 ${author}</span>
+                <span>📄 ${readTime}</span>
+                <span>📅 ${date}</span>
+              </div>
+              <img class="article-full-image" src="${article.image}" alt="${title}" loading="lazy">
+              <div class="article-full-content">${content}</div>
+              ${tags ? `<div class="article-full-tags">${tags}</div>` : ''}
+            </article>
+          `;
+        })
+        .catch(() => {
+          container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:4rem 0;">Ошибка загрузки статьи. <a href="index.html" style="color:var(--color-accent);">Вернуться на главную</a></p>';
+        });
+    })();
+  </script>
+</body>
+</html>

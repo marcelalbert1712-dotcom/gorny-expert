@@ -238,6 +238,10 @@
           day: 'numeric', month: 'long', year: 'numeric'
         });
 
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+          window.location.href = `article.html?slug=${article.slug}`;
+        });
         card.innerHTML = `
           <img class="article-card-image" src="${article.image}" alt="${imgAlt}" loading="lazy">
           <div class="article-card-body">
@@ -643,6 +647,10 @@
 
       const card = document.createElement('div');
       card.className = 'tip-card animate-on-scroll';
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        window.location.href = `article.html?slug=${article.slug}`;
+      });
       card.innerHTML = `
         <img class="tip-card-image" src="${article.image}" alt="${imgAlt}" loading="lazy">
         <div class="tip-card-body">
