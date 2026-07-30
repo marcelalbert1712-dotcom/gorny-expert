@@ -59,24 +59,41 @@
     currentLang: 'ru',
 
     init() {
-      this.currentLang = localStorage.getItem('lang') || 'ru';
-      this.apply(this.currentLang);
+      try {
+        console.log('🌐 I18nManager.init: starting');
+        this.currentLang = localStorage.getItem('lang') || 'ru';
+        console.log('🌐 I18nManager.init: currentLang =', this.currentLang);
+        this.apply(this.currentLang);
 
-      document.querySelectorAll('[data-lang]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          this.apply(btn.dataset.lang);
+        const langBtns = document.querySelectorAll('[data-lang]');
+        console.log('🌐 I18nManager.init: found', langBtns.length, 'lang buttons');
+        if (!langBtns.length) {
+          console.warn('⚠ No [data-lang] buttons found');
+        }
+        langBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            if (!btn.dataset.lang) return;
+            this.apply(btn.dataset.lang);
+          });
         });
-      });
+      } catch (err) {
+        console.error('I18nManager init error:', err);
+      }
     },
 
     apply(lang) {
+      console.log('🌐 I18nManager.apply:', lang);
       this.currentLang = lang;
       localStorage.setItem('lang', lang);
       document.documentElement.lang = lang;
       document.documentElement.setAttribute('data-lang', lang);
 
       const t = window.TRANSLATIONS?.[lang];
-      if (!t) return;
+      console.log('🌐 window.TRANSLATIONS exists:', !!window.TRANSLATIONS, '| lang data exists:', !!t);
+      if (!t) {
+        console.warn('🌐 Translations not found for:', lang, 'window.TRANSLATIONS keys:', Object.keys(window.TRANSLATIONS || {}));
+        return;
+      }
 
       // Translate data-i18n elements
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -726,8 +743,8 @@
     const submitBtn = document.getElementById('formSubmit');
     const successEl = document.getElementById('formSuccess');
 
-    const TELEGRAM_BOT_TOKEN = '8973920204:AAGBZVz9py-7b3KgighRMAPeKq8onqz1GX4';
-    const TELEGRAM_CHAT_ID = '916320421';
+    const TELEGRAM_BOT_TOKEN = 'TELEGRAM_BOT_TOKEN_PLACEHOLDER';
+    const TELEGRAM_CHAT_ID = 'TELEGRAM_CHAT_ID_PLACEHOLDER';
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -928,12 +945,7 @@
     // Load data from JSON files
     const dataLoaded = await loadData();
 
-    if (!dataLoaded) {
-      console.warn('⚠ Data loading failed, using fallback');
-      return;
-    }
-
-    // Detect current page
+    // Detect current page (even if data loading failed)
     const page = I18nManager.detectPage();
 
     // Render page-specific content

@@ -2,7 +2,7 @@
  * Горный эксперт — Переводы (RU/EN)
  * Все тексты сайта в одном месте
  */
-const TRANSLATIONS = {
+window.TRANSLATIONS = {
   ru: {
     // Навигация
     nav: {
