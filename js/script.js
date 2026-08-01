@@ -690,9 +690,15 @@
   // 10. SCROLL ANIMATIONS (animation-studio skill)
   // ============================================
   function initScrollAnimations() {
-    // Animate on scroll (fade + slide up)
-    const animElements = document.querySelectorAll('.animate-on-scroll:not(.initialized)');
+    // Animate on scroll (fade + slide up), plus hero fade-in
+    const animElements = document.querySelectorAll('.animate-on-scroll:not(.initialized), .animate-fade-in:not(.initialized)');
     if (animElements.length === 0) return;
+
+    // Show hero fade-in content immediately (it's in the first viewport)
+    const heroFade = document.getElementById('heroContent');
+    if (heroFade && !heroFade.classList.contains('visible')) {
+      heroFade.classList.add('visible');
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
